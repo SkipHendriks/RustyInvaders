@@ -6,6 +6,7 @@ extern crate image;
 use std::io::Cursor;
 use stopwatch::{Stopwatch};
 mod game;
+mod player;
 
 fn main() {
     use glium::{DisplayBuild, Surface};
