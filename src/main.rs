@@ -5,9 +5,9 @@ extern crate image;
 
 use std::io::Cursor;
 use stopwatch::{Stopwatch};
+mod game;
 
 fn main() {
-
     use glium::{DisplayBuild, Surface};
     let display = glium::glutin::WindowBuilder::new().build_glium().unwrap();
 
