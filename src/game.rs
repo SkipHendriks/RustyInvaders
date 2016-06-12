@@ -13,7 +13,7 @@ struct Game {
     elapsedTime: f64,
     player: player::Player,
     display: Display,
-    entities: Vec<Box<Renderable>>,
+    //entities: Vec<Box<Renderable>>,
 }
 
 impl Game {
@@ -23,14 +23,14 @@ impl Game {
 
         let new_display = glium::glutin::WindowBuilder::new().build_glium().unwrap();
         let new_player = player::Player::new(&new_display);
-        let new_entities = vec![new_player];
+        //let new_entities = vec![new_player];
         
 
         Game {
             elapsedTime: 0.0,
             player: new_player,
             display: new_display,
-            entities: new_entities,
+            //entities: new_entities,
         }
     }
 
