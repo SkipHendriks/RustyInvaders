@@ -1,0 +1,9 @@
+[package]
+name = "invaders"
+version = "0.1.0"
+authors = ["s.hendriks <s.hendriks@omnihis.nl>"]
+
+[dependencies]
+glium = "*"
+stopwatch = "*"
+image = "*"
