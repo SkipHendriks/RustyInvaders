@@ -19,12 +19,12 @@ fn main() {
     let texture = glium::texture::Texture2d::new(&display, image).unwrap();
 
 
-
     #[derive(Copy, Clone)]
     struct Vertex {
         position: [f32; 2],
         tex_coords: [f32; 2],
     }
+
 
     implement_vertex!(Vertex, position, tex_coords);
 

@@ -2,21 +2,35 @@ extern crate glium;
 
 use player;
 
+pub use glium::backend::glutin_backend::GlutinFacade as Display;
+
+
+trait Renderable {
+    fn render(&self, &Display) -> &Display;
+}
+
 struct Game {
     elapsedTime: f64,
     player: player::Player,
-    //display: glium::glutin::Window,
+    display: Display,
+    entities: Vec<Box<Renderable>>,
 }
-
 
 impl Game {
     // Constructor
     pub fn new() -> Game {
-        let new_player = player::Player::new();
+        use glium::{DisplayBuild};
+
+        let new_display = glium::glutin::WindowBuilder::new().build_glium().unwrap();
+        let new_player = player::Player::new(&new_display);
+        let new_entities = vec![new_player];
+        
 
         Game {
             elapsedTime: 0.0,
             player: new_player,
+            display: new_display,
+            entities: new_entities,
         }
     }
 
