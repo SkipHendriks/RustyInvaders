@@ -7,13 +7,13 @@ use gpufrontend;
 
 #[derive(Copy, Clone)]
 pub struct Vertex {
-    position: [f32; 2],
-    tex_coords: [f32; 2],
+    pub position: [f32; 2],
+    pub tex_coords: [f32; 2],
 }
 
 
-trait Renderable {
-    fn get_render_info(&self) -> (Vertex, f64, glium::Texture2d);
+pub trait Renderable {
+    fn get_render_info(&self) -> (&Vec<Vertex>, &f64, &f64, &glium::Texture2d);
 }
 
 pub struct Game {
