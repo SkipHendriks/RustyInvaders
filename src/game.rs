@@ -1,16 +1,16 @@
 extern crate glium;
 
-use player;
-
 pub use glium::backend::glutin_backend::GlutinFacade as Display;
+
+use player;
 
 
 trait Renderable {
     fn render(&self, &Display) -> &Display;
 }
 
-struct Game {
-    elapsedTime: f64,
+pub struct Game {
+    elapsedTime: i64,
     player: player::Player,
     display: Display,
     //entities: Vec<Box<Renderable>>,
@@ -27,7 +27,7 @@ impl Game {
         
 
         Game {
-            elapsedTime: 0.0,
+            elapsedTime: 0,
             player: new_player,
             display: new_display,
             //entities: new_entities,
@@ -35,10 +35,15 @@ impl Game {
     }
 
     // Main method that gets called during every iteration of the owners loop
-    pub fn tick(&self, time: f64){
+    pub fn tick(&self, time: i64){
         let mut elapsedTime = self.elapsedTime;
 
         elapsedTime += time;
+
+    }
+
+    // Render method that is called to display the contents of the game
+    pub fn render(&self){
 
     }
 }
