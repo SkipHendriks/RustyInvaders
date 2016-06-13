@@ -6,6 +6,12 @@ use std::io::Cursor;
 pub use glium::backend::glutin_backend::GlutinFacade as Display;
 
 
+#[derive(Copy, Clone)]
+pub struct Vertex {
+    position: [f32; 2],
+    tex_coords: [f32; 2],
+}
+
 pub struct Player {
     pub position: f64,
     pub rotation: f64,
@@ -22,11 +28,7 @@ impl Player {
         let image = glium::texture::RawImage2d::from_raw_rgba_reversed(image.into_raw(), image_dimensions);
         let new_texture = glium::texture::Texture2d::new(display, image).unwrap();
 
-        #[derive(Copy, Clone)]
-        struct Vertex {
-            position: [f32; 2],
-            tex_coords: [f32; 2],
-        }
+
 
         implement_vertex!(Vertex, position, tex_coords);
 
@@ -36,7 +38,13 @@ impl Player {
         let vertex2 = Vertex { position: [ 0.0,  0.5], tex_coords: [0.0, 2.0] };
         let vertex3 = Vertex { position: [ 0.5, -0.25], tex_coords: [2.0, 0.0] };
         let shape = vec![vertex1, vertex2, vertex3];
+
         let newVertexBuffer = glium::VertexBuffer::new(display, &shape).unwrap();
+
+        // match newVertexBuffer {
+        //     Ok(_) => println!("yo"),
+        //     Err(_) => println!("error"),
+        // }
 
     
 
