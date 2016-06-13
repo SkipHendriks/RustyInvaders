@@ -3,16 +3,23 @@ extern crate glium;
 pub use glium::backend::glutin_backend::GlutinFacade as Display;
 
 use player;
+use gpufrontend;
+
+#[derive(Copy, Clone)]
+pub struct Vertex {
+    position: [f32; 2],
+    tex_coords: [f32; 2],
+}
 
 
 trait Renderable {
-    fn render(&self, &Display) -> &Display;
+    fn get_render_info(&self) -> (Vertex, f64, glium::Texture2d);
 }
 
 pub struct Game {
     elapsedTime: i64,
     player: player::Player,
-    display: Display,
+    gpuFrontend: gpufrontend::GpuFrontend,
     //entities: Vec<Box<Renderable>>,
 }
 
@@ -23,13 +30,14 @@ impl Game {
 
         let new_display = glium::glutin::WindowBuilder::new().build_glium().unwrap();
         let new_player = player::Player::new(&new_display);
+        let new_gpu_frontend = gpufrontend::GpuFrontend::new();
         //let new_entities = vec![new_player];
         
 
         Game {
             elapsedTime: 0,
             player: new_player,
-            display: new_display,
+            gpuFrontend: new_gpu_frontend,
             //entities: new_entities,
         }
     }
