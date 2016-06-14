@@ -3,6 +3,8 @@ use glium::backend::glutin_backend::GlutinFacade;
 
 extern crate glium;
 
+use game::{Vertex};
+
 pub struct GpuFrontend {
     display: GlutinFacade,
     program: Program,
@@ -52,7 +54,7 @@ impl GpuFrontend {
         }
     }
 
-    pub fn draw(&self, &glium::VertexBuffer, f64, f64, &glium::Texture2d) {
-        
+    pub fn draw(&self, vertex_buffer: &glium::VertexBuffer<Vertex>, position: f64, rotation: f64, texture: &glium::Texture2d) {
+
     }
 }

@@ -33,13 +33,13 @@ impl Player {
         let vertex3 = Vertex { position: [ 0.5, -0.25], tex_coords: [2.0, 0.0] };
         let new_shape = vec![vertex1, vertex2, vertex3];
 
-        let new_vertex_buffer = glium::VertexBuffer::new(&display, &new_shape).unwrap();
+        let new_vertex_buffer = glium::VertexBuffer::new(display, &new_shape).unwrap();
     
         Player {
             position: 0.0,
             rotation: 0.0,
             texture: new_texture,
-            shape: new_shape,
+            vertex_buffer: new_vertex_buffer,
         }
     }
 }
