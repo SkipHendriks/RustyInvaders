@@ -51,4 +51,8 @@ impl GpuFrontend {
             program: new_program,
         }
     }
+
+    pub fn draw(&self, &glium::VertexBuffer, f64, f64, &glium::Texture2d) {
+        
+    }
 }

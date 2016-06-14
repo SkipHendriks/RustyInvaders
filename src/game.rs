@@ -13,7 +13,7 @@ pub struct Vertex {
 
 
 pub trait Renderable {
-    fn get_render_info(&self) -> (&Vec<Vertex>, &f64, &f64, &glium::Texture2d);
+    fn get_render_info(&self) -> (&glium::VertexBuffer<Vertex>, &f64, &f64, &glium::Texture2d);
 }
 
 pub struct Game {

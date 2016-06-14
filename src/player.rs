@@ -5,8 +5,6 @@ use std::io::Cursor;
 
 use game::{Renderable,Vertex};
 
-
-
 pub use glium::backend::glutin_backend::GlutinFacade as Display;
 
 
@@ -14,7 +12,7 @@ pub struct Player {
     pub position: f64,
     pub rotation: f64,
     pub texture: glium::Texture2d,
-    pub shape: Vec<Vertex>,
+    pub vertex_buffer: glium::VertexBuffer<Vertex>,
 }
 
 impl Player {
@@ -26,8 +24,6 @@ impl Player {
         let image = glium::texture::RawImage2d::from_raw_rgba_reversed(image.into_raw(), image_dimensions);
         let new_texture = glium::texture::Texture2d::new(display, image).unwrap();
 
-
-
         implement_vertex!(Vertex, position, tex_coords);
 
 
@@ -36,6 +32,8 @@ impl Player {
         let vertex2 = Vertex { position: [ 0.0,  0.5], tex_coords: [0.0, 2.0] };
         let vertex3 = Vertex { position: [ 0.5, -0.25], tex_coords: [2.0, 0.0] };
         let new_shape = vec![vertex1, vertex2, vertex3];
+
+        let new_vertex_buffer = glium::VertexBuffer::new(&display, &new_shape).unwrap();
     
         Player {
             position: 0.0,
@@ -47,7 +45,7 @@ impl Player {
 }
 
 impl Renderable for Player {
-    fn get_render_info(&self) -> (&Vec<Vertex>, &f64, &f64, &glium::Texture2d) {
-        (&self.shape, &self.position, &self.rotation, &self.texture)
+    fn get_render_info(&self) -> (&glium::VertexBuffer<Vertex>, &f64, &f64, &glium::Texture2d) {
+        (&self.vertex_buffer, &self.position, &self.rotation, &self.texture)
     }
 }
