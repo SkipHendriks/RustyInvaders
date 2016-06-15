@@ -54,6 +54,6 @@ impl Game {
     // Render method that is called to display the contents of the game
     pub fn render(&self){
         let (vertex_buffer, position, rotation, texture) = self.player.get_render_info();
-        &self.gpuFrontend.draw(&vertex_buffer, &position, &rotation, &texture);
+        &self.gpuFrontend.draw(&vertex_buffer, position, rotation, &texture);
     }
 }
