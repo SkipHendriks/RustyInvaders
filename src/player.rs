@@ -9,8 +9,8 @@ pub use glium::backend::glutin_backend::GlutinFacade as Display;
 
 
 pub struct Player {
-    pub position: f64,
-    pub rotation: f64,
+    pub position: f32,
+    pub rotation: f32,
     pub texture: glium::Texture2d,
     pub vertex_buffer: glium::VertexBuffer<Vertex>,
 }
@@ -45,7 +45,7 @@ impl Player {
 }
 
 impl Renderable for Player {
-    fn get_render_info(&self) -> (&glium::VertexBuffer<Vertex>, f64, f64, &glium::Texture2d) {
+    fn get_render_info(&self) -> (&glium::VertexBuffer<Vertex>, f32, f32, &glium::Texture2d) {
         (&self.vertex_buffer, self.position, self.rotation, &self.texture)
     }
 }
