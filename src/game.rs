@@ -17,9 +17,9 @@ pub trait Renderable {
 }
 
 pub struct Game {
-    elapsedTime: i64,
+    elapsed_time: i64,
     player: player::Player,
-    gpuFrontend: gpufrontend::GpuFrontend, // entities: Vec<Box<Renderable>>,
+    gpu_frontend: gpufrontend::GpuFrontend, // entities: Vec<Box<Renderable>>,
 }
 
 impl Game {
@@ -34,16 +34,16 @@ impl Game {
 
 
         Game {
-            elapsedTime: 0,
+            elapsed_time: 0,
             player: new_player,
-            gpuFrontend: new_gpu_frontend, // entities: new_entities,
+            gpu_frontend: new_gpu_frontend, // entities: new_entities,
         }
     }
 
 
     // Main method that gets called during every iteration of the owners loop
     pub fn tick(&self, time: i64) {
-        let mut elapsedTime = self.elapsedTime;
+        let mut elapsedTime = self.elapsed_time;
 
         elapsedTime += time;
 
@@ -52,6 +52,6 @@ impl Game {
     // Render method that is called to display the contents of the game
     pub fn render(&self) {
         let (vertex_buffer, position, rotation, texture) = self.player.get_render_info();
-        &self.gpuFrontend.draw(&vertex_buffer, position, rotation, &texture);
+        &self.gpu_frontend.draw(&vertex_buffer, position, rotation, &texture);
     }
 }

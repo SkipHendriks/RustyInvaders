@@ -12,8 +12,6 @@ fn main() {
    let game = game::Game::new();
    let mut stopwatch = Stopwatch::start_new();
 
-
-
    loop {
        game.render();
        game.tick(stopwatch.elapsed_ms());
