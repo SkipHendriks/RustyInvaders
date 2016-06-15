@@ -19,32 +19,30 @@ pub trait Renderable {
 pub struct Game {
     elapsedTime: i64,
     player: player::Player,
-    gpuFrontend: gpufrontend::GpuFrontend,
-    //entities: Vec<Box<Renderable>>,
+    gpuFrontend: gpufrontend::GpuFrontend, // entities: Vec<Box<Renderable>>,
 }
 
 impl Game {
     // Constructor
     pub fn new() -> Game {
-        use glium::{DisplayBuild};
+        use glium::DisplayBuild;
 
         let new_display = glium::glutin::WindowBuilder::new().build_glium().unwrap();
         let new_player = player::Player::new(&new_display);
         let new_gpu_frontend = gpufrontend::GpuFrontend::new();
-        //let new_entities = vec![new_player];
-        
+        // let new_entities = vec![new_player];
+
 
         Game {
             elapsedTime: 0,
             player: new_player,
-            gpuFrontend: new_gpu_frontend,
-            //entities: new_entities,
+            gpuFrontend: new_gpu_frontend, // entities: new_entities,
         }
     }
 
 
     // Main method that gets called during every iteration of the owners loop
-    pub fn tick(&self, time: i64){
+    pub fn tick(&self, time: i64) {
         let mut elapsedTime = self.elapsedTime;
 
         elapsedTime += time;
@@ -52,7 +50,7 @@ impl Game {
     }
 
     // Render method that is called to display the contents of the game
-    pub fn render(&self){
+    pub fn render(&self) {
         let (vertex_buffer, position, rotation, texture) = self.player.get_render_info();
         &self.gpuFrontend.draw(&vertex_buffer, position, rotation, &texture);
     }
