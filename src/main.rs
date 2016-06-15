@@ -9,7 +9,7 @@ mod player;
 mod gpufrontend;
 
 fn main() {
-   let game = game::Game::new();
+   let mut game = game::Game::new();
    let mut stopwatch = Stopwatch::start_new();
 
    loop {
