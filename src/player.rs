@@ -45,7 +45,17 @@ impl Player {
 }
 
 impl Renderable for Player {
-    fn get_render_info(&self) -> (&glium::VertexBuffer<Vertex>, f32, f32, &glium::Texture2d) {
+    fn get_render_info(&mut self) -> (&glium::VertexBuffer<Vertex>, f32, f32, &glium::Texture2d) {
+
+        self.position += 0.0002;
+        if self.position > 0.5 {
+            self.position = -0.5;
+        }
+
+        self.rotation += 0.0002;
+        if self.rotation > 0.5 {
+            self.rotation = -0.5;
+        }
         (&self.vertex_buffer, self.position, self.rotation, &self.texture)
     }
 }

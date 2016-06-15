@@ -13,7 +13,7 @@ pub struct Vertex {
 
 
 pub trait Renderable {
-    fn get_render_info(&self) -> (&glium::VertexBuffer<Vertex>, f32, f32, &glium::Texture2d);
+    fn get_render_info(&mut self) -> (&glium::VertexBuffer<Vertex>, f32, f32, &glium::Texture2d);
 }
 
 pub struct Game {
@@ -28,7 +28,7 @@ impl Game {
         use glium::DisplayBuild;
 
         let new_display = glium::glutin::WindowBuilder::new().build_glium().unwrap();
-        let new_player = player::Player::new(&new_display);
+        let mut new_player = player::Player::new(&new_display);
         let new_gpu_frontend = gpufrontend::GpuFrontend::new();
         // let new_entities = vec![new_player];
 
@@ -50,7 +50,7 @@ impl Game {
     }
 
     // Render method that is called to display the contents of the game
-    pub fn render(&self) {
+    pub fn render(self) {
         let (vertex_buffer, position, rotation, texture) = self.player.get_render_info();
         &self.gpu_frontend.draw(&vertex_buffer, position, rotation, &texture);
     }
