@@ -54,7 +54,31 @@ impl GpuFrontend {
         }
     }
 
-    pub fn draw(&self, vertex_buffer: &glium::VertexBuffer<Vertex>, position: &f64, rotation: &f64, texture: &glium::Texture2d) {
+    pub fn draw(&self, vertex_buffer: &glium::VertexBuffer<Vertex>, position: f32, rotation: f32, texture: &glium::Texture2d) {
+        let mut target = self.display.draw();
+        target.clear_color(0.0, 0.0, 1.0, 1.0);
 
+        let indices = glium::index::NoIndices(glium::index::PrimitiveType::TrianglesList);
+
+        let uniforms = uniform! {
+            pos_matrix: [
+                [1.0, 0.0, 0.0, 0.0],
+                [0.0, 1.0, 0.0, 0.0],
+                [0.0, 0.0, 1.0, 0.0],
+                [ position , 0.0, 0.0, 1.0f32],
+            ],
+            rot_matrix: [
+                [ rotation.cos(), rotation.sin(), 0.0, 0.0],
+                [-rotation.sin(), rotation.cos(), 0.0, 0.0],
+                [0.0, 0.0, 1.0, 0.0],
+                [0.0, 0.0, 0.0, 1.0f32],
+            ],
+            tex: texture,
+        };
+
+        target.draw(vertex_buffer, indices, &self.program, &uniforms,
+            &Default::default()).unwrap();
+
+        target.finish().unwrap();
     }
 }
