@@ -9,12 +9,11 @@ mod gpufrontend;
 
 fn main() {
    let game = game::Game::new();
-   let stopwatch = Stopwatch::new();
+   let mut stopwatch = Stopwatch::start_new();
 
    loop {
-       let sw = Stopwatch::start_new();
-
        game.render();
-       game.tick(sw.elapsed_ms());
+       game.tick(stopwatch.elapsed_ms());
+       stopwatch.restart();
    }
 }
