@@ -13,7 +13,7 @@ pub struct Vertex {
 
 
 pub trait Renderable {
-    fn get_render_info(&self) -> (&glium::VertexBuffer<Vertex>, &f64, &f64, &glium::Texture2d);
+    fn get_render_info(&self) -> (&glium::VertexBuffer<Vertex>, f64, f64, &glium::Texture2d);
 }
 
 pub struct Game {
@@ -42,6 +42,7 @@ impl Game {
         }
     }
 
+
     // Main method that gets called during every iteration of the owners loop
     pub fn tick(&self, time: i64){
         let mut elapsedTime = self.elapsedTime;
@@ -52,6 +53,7 @@ impl Game {
 
     // Render method that is called to display the contents of the game
     pub fn render(&self){
-
+        let (vertex_buffer, position, rotation, texture) = self.player.get_render_info();
+        &self.gpuFrontend.draw(&vertex_buffer, &position, &rotation, &texture);
     }
 }

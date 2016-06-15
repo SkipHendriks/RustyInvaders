@@ -45,7 +45,7 @@ impl Player {
 }
 
 impl Renderable for Player {
-    fn get_render_info(&self) -> (&glium::VertexBuffer<Vertex>, &f64, &f64, &glium::Texture2d) {
-        (&self.vertex_buffer, &self.position, &self.rotation, &self.texture)
+    fn get_render_info(&self) -> (&glium::VertexBuffer<Vertex>, f64, f64, &glium::Texture2d) {
+        (&self.vertex_buffer, self.position, self.rotation, &self.texture)
     }
 }

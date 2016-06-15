@@ -3,6 +3,7 @@ extern crate glium;
 extern crate stopwatch;
 
 use stopwatch::{Stopwatch};
+
 mod game;
 mod player;
 mod gpufrontend;
@@ -10,6 +11,8 @@ mod gpufrontend;
 fn main() {
    let game = game::Game::new();
    let mut stopwatch = Stopwatch::start_new();
+
+
 
    loop {
        game.render();

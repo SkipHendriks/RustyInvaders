@@ -54,7 +54,7 @@ impl GpuFrontend {
         }
     }
 
-    pub fn draw(&self, vertex_buffer: &glium::VertexBuffer<Vertex>, position: f64, rotation: f64, texture: &glium::Texture2d) {
+    pub fn draw(&self, vertex_buffer: &glium::VertexBuffer<Vertex>, position: &f64, rotation: &f64, texture: &glium::Texture2d) {
 
     }
 }
