@@ -1,5 +1,6 @@
 use glium::{DisplayBuild, Surface, VertexBuffer, Program};
 use glium::backend::glutin_backend::GlutinFacade;
+use glium::{glutin, index, uniforms};
 
 extern crate glium;
 
@@ -79,5 +80,17 @@ impl GpuFrontend {
                 &Default::default()).unwrap();
         target.finish().unwrap();
         println!("finished");
+        self.update();
+        println!("updated");
+    }
+
+    fn update(&self) {
+        // TODO: this is necessary for input, map keys to actions
+        for ev in self.display.poll_events() {
+            match ev {
+                glutin::Event::Closed => return,
+                _ => (),
+            }
+        }
     }
 }
