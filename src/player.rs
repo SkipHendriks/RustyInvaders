@@ -42,20 +42,27 @@ impl Player {
             vertex_buffer: new_vertex_buffer,
         }
     }
+
+    pub fn updatePosition(&self) {
+        let mut mut_pos = self.position;
+        let mut mut_rot = self.rotation;
+
+
+
+        mut_pos += 0.0002;
+        if mut_pos > 0.5 {
+            mut_pos = -0.5;
+        }
+
+        mut_rot += 0.0002;
+        if mut_rot > 0.5 {
+            mut_rot = -0.5;
+        }
+    }
 }
 
 impl Renderable for Player {
     fn get_render_info(&mut self) -> (&glium::VertexBuffer<Vertex>, f32, f32, &glium::Texture2d) {
-
-        self.position += 0.0002;
-        if self.position > 0.5 {
-            self.position = -0.5;
-        }
-
-        self.rotation += 0.0002;
-        if self.rotation > 0.5 {
-            self.rotation = -0.5;
-        }
         (&self.vertex_buffer, self.position, self.rotation, &self.texture)
     }
 }

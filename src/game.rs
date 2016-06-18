@@ -46,6 +46,7 @@ impl Game {
         let mut elapsedTime = self.elapsed_time;
 
         elapsedTime += time;
+        self.player.updatePosition();
 
     }
 
